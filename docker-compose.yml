@@ -1,0 +1,70 @@
+version: "3.3"
+
+#Author : Mahaveer P.
+#Version 1.0
+
+services:
+
+  mysql:
+    image: mysql:5.7
+    container_name: mysql_5.7_container
+    environment:
+      MYSQL_ROOT_PASSWORD: drupal
+      MYSQL_USER: drupal
+      MYSQL_PASSWORD: drupal
+      MYSQL_DATABASE: drupal
+    #volumes:
+      #  - ./data:/var/lib/mysql
+      #Not using above path as it produces a bug in MySQL5.7 sometimes, official bug from MySQL
+    expose:
+    - "3306"
+      
+    restart: always
+     
+  php:
+    image: php:7.2
+    container_name: php7.2_container
+    # Pass environment variables to the container.
+    environment:
+      PHP_TIMEZONE: Asia/Singapore
+
+
+  apache:
+    container_name: apache_container
+    image: 'bitnami/apache:latest'
+    ports:
+      - "80:8080"
+      - "443:8443"
+    environment:
+      APACHE_LOG_LEVEL: debug
+      APACHE_BACKEND_HOST: php
+      APACHE_SERVER_ROOT: /var/www/html
+
+  drupal:
+    container_name: drupal_latest_container
+    image: drupal:latest
+    ports:
+      - "8080:80"
+      
+    environment:
+    # Default Drupal settings 
+        DRUPAL_PROFILE: standard
+        DRUPAL_SITE_NAME: Drupal
+        DRUPAL_USER: admin
+        DRUPAL_PASS: admin
+        DRUPAL_DBURL: mysql://drupal:drupal@database:3306/drupal
+        #Use 127.0.0.1 instead of localhost while doing the configuration in browser
+        
+    links:
+        - mysql:mysql
+    # Host machine's port 8080 will map to Drupal's port 80
+    volumes:
+      - /var/www/html/modules
+      - /var/www/html/profiles
+      - /var/www/html/themes
+      - /var/www/html/sites
+    restart: always
+    
+#volumes:
+  #data:
+    # driver: local
