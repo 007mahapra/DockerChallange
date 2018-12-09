@@ -64,7 +64,7 @@ Recreating mysql_5.7_container ... done
 Recreating drupal_latest_container ... done
 
 
-# Step 5) Cope paste http://localhost:8080/ in your browser on same machine/server to view Drupal default config page
+# Step 5) Copy paste http://localhost:8080/ in your browser on same machine/server to view Drupal default config page
 
 
 
