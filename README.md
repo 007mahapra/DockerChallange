@@ -64,7 +64,30 @@ Recreating mysql_5.7_container ... done
 Recreating drupal_latest_container ... done
 
 
-# Step 5) Copy paste http://localhost:8080/ in your browser on same machine/server to view Drupal default config page
+# Step 5) Link to show Drupal default page in browser
+
+Copy paste http://localhost:8080/ in your browser on same machine/server to view Drupal default config page
+
+
+# Additional References :
+
+
+https://www.cloudreach.com/blog/containerize-this-php-apache-mysql-within-docker-containers/
+
+https://github.com/Lullabot/drupal-docker-boilerplate/blob/master/docker-compose.yml
+
+https://gist.github.com/jcavat/2ed51c6371b9b488d6a940ba1049189b
+	
+
+https://hub.docker.com/r/_/drupal/
+
+
+https://github.com/RobLoach/docker-compose-drupal/blob/master/docker-compose.yml
+
+phpmyadmin
+
+https://hub.docker.com/r/phpmyadmin/phpmyadmin/
+
 
 
 
